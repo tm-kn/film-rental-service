@@ -5,16 +5,25 @@ if(!defined('IN_APP')) {
 }
 
 use \Lib\Template;
+use \App\Services\EmployeeService;
 
 abstract class BaseController {
+  private $currentUser;
+
   protected function getBaseTemplate($content) {
     $baseTemplate = new Template('base.php');
 
     $context = [
       'content' => $content,
-      'title' => 'Film Rental Service'
+      'title' => 'Film Rental Service',
+      'error' => '',
+      'ctrl' => $this
     ];
 
+    if(isset($_SESSION['flash'])) {
+      $context['error'] = $_SESSION['flash'];
+      unset($_SESSION['flash']);
+    }
     return $baseTemplate->render($context);
   }
 
@@ -23,5 +32,23 @@ abstract class BaseController {
     $content = $template->render($args);
 
     return $this->getBaseTemplate($content);
+  }
+
+  public function getCurrentUser() {
+    if(!$this->currentUser) {
+      $employeeService = new EmployeeService;
+
+      $this->currentUser = $employeeService->getEmployee($_SESSION['empnin']);
+    }
+
+    return $this->currentUser;
+  }
+
+  public function isLoggedIn() {
+    return !empty($this->getCurrentUser());
+  }
+
+  public function dispatch() {
+
   }
 }

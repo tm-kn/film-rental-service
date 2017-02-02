@@ -1,0 +1,8 @@
+{
+  "dbname": "homestead",
+  "dbuser": "homestead",
+  "dbpassword": "secret",
+  "dbhost": "127.0.0.1",
+  "dbport": "33060",
+  "dbcharset": "utf8"
+}

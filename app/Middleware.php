@@ -8,7 +8,7 @@ use getRoutes;
 
 class Middleware {
   private $request;
-  private $request_method;
+  private $requestMethod;
   private $routes;
 
   public function __construct() {
@@ -30,7 +30,16 @@ class Middleware {
 
     $controllerMethod = $route->getControllerMethod();
 
+    $controller->dispatch($this);
     return $controller->$controllerMethod($this);
+  }
+
+  public function getData($property) {
+    if(array_key_exists($property, $this->request)) {
+      return $this->request[$property];
+    }
+
+    return NULL;
   }
 
   private function getCurrentRoute() {
@@ -40,19 +49,23 @@ class Middleware {
       }
     }
 
-    http_response_code(404);
-    die("Not found - 404");
+    header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
+    exit;
   }
 
   private function appendSlashToPath() {
     if(substr($this->request['path'], -1) != '/') {
       header('Location: index.php?path=' . $this->request['path'] . '/');
-      die();
+      exit;
     }
   }
 
-  private function redirectToRoot() {
-    header('Location: index.php?path=/');
-    die();
+  public function redirectTo($path) {
+    header('Location: index.php?path=' . $path, true);
+    exit;
+  }
+
+  public function redirectToRoot() {
+    return $this->redirectTo('/');
   }
 }
