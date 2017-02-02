@@ -1,7 +1,7 @@
 <?php
 
 if(!defined('IN_APP')) {
-  throw new Exception("IN_APP not defined.");
+  throw new \Exception("IN_APP not defined.");
 }
 
 define('__ROOT__', dirname(dirname(__FILE__)));

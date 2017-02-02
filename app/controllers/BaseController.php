@@ -1,7 +1,7 @@
 <?php namespace App\Controllers;
 
 if(!defined('IN_APP')) {
-  throw new Exception("IN_APP not defined.");
+  throw new \Exception("IN_APP not defined.");
 }
 
 use \Lib\Template;

@@ -1,7 +1,7 @@
 <?php namespace App\Services;
 
 if(!defined('IN_APP')) {
-  throw new Exception("IN_APP not defined.");
+  throw new \Exception("IN_APP not defined.");
 }
 
 use \PDO;
@@ -32,7 +32,7 @@ abstract class BaseService {
     $query->execute($args);
 
     if(!$query) {
-      throw new Exception("Query failed");
+      throw new \Exception("Query failed");
     }
 
     return $query;
