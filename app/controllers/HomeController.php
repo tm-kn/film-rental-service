@@ -1,0 +1,11 @@
+<?php namespace App\Controllers;
+
+if(!defined('IN_APP')) {
+  throw new Exception("IN_APP not defined.");
+}
+
+class HomeController extends BaseController {
+  public function get($request) {
+    return $this->render('home.php');
+  }
+}
