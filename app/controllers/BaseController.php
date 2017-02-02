@@ -8,7 +8,7 @@ use \Lib\Template;
 use \App\Services\EmployeeService;
 
 abstract class BaseController {
-  private $currentUser;
+  private $currentUser = NULL;
 
   protected function getBaseTemplate($content) {
     $baseTemplate = new Template('base.php');
@@ -35,7 +35,7 @@ abstract class BaseController {
   }
 
   public function getCurrentUser() {
-    if(!$this->currentUser) {
+    if(!$this->currentUser && isset($_SESSION['empnin'])) {
       $employeeService = new EmployeeService;
 
       $this->currentUser = $employeeService->getEmployee($_SESSION['empnin']);
@@ -48,7 +48,7 @@ abstract class BaseController {
     return !empty($this->getCurrentUser());
   }
 
-  public function dispatch() {
+  public function dispatch($request) {
 
   }
 }
