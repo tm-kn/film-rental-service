@@ -42,6 +42,12 @@ abstract class BaseService {
     return $this->execute($query, $args)->fetchAll(PDO::FETCH_CLASS, $class);
   }
 
+  protected function findAndMap($query, $args, $class) {
+    $query = $this->execute($query, $args);
+    $query->setFetchMode(PDO::FETCH_CLASS, $class);
+    return $query->fetch();
+  }
+
   protected function getDbPrefix() {
     return $this->dbPrefix;
   }

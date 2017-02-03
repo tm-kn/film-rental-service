@@ -6,13 +6,50 @@
         <h5>No DVDs on loan</h5>
       </div>
     <?php else: ?>
-      <ul>
-        <?php foreach($loans as $loan): ?>
-          <li>
-            <?php echo $loan->getShopId(); ?>
-          </li>
-        <?php endforeach; ?>
-      </ul>
+      <table>
+        <thead>
+          <th>Film</th>
+          <th>DVD</th>
+          <th>Customer</th>
+          <th>Due</th>
+          <th>Rate</th>
+          <th>Overdue Charge</th>
+          <th>Status</th>
+          <th>Details</th>
+        </thead>
+        <tbody>
+          <?php foreach($loans as $loan): ?>
+            <tr>
+              <td>
+                <?php echo $loan->getFilmName(); ?> (#<?php echo $loan->getFilmId(); ?>)
+              </td>
+              <td>
+                #<?php echo $loan->getDvdId(); ?>
+              </td>
+              <td>
+                <?php echo $loan->getCustomerName();  ?> (#<?php echo $loan->getCustomerId(); ?>)
+              </td>
+              <td>
+                <?php echo $loan->getDueDate(); ?>
+              </td>
+              <td>
+                £<?php echo $loan->getRate(); ?>
+              </td>
+              <td>
+                £<?php echo $loan->getOverdueCharge(); ?>
+              </td>
+              <td>
+                <?php echo $loan->getStatus(); ?>
+              </td>
+              <td>
+                <a href="<?php echo \Lib\url('/loans/', ['dvdId' => $loan->getDvdId(), 'retDateTime' => $loan->getReturnDateTime()]); ?>">
+                  details
+                </a>
+              </td>
+            </tr>
+          <?php endforeach; ?>
+        </tbody>
+      </table>
     <?php endif; ?>
   </div>
 </div>

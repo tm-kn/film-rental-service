@@ -4,6 +4,9 @@ if(!defined('IN_APP')) {
   throw new \Exception("IN_APP not defined.");
 
 }
+
+use \Lib\Http404;
+use \App\Controllers\BaseController;
 use getRoutes;
 
 class Middleware {
@@ -30,8 +33,13 @@ class Middleware {
 
     $controllerMethod = $route->getControllerMethod();
 
-    $controller->dispatch($this);
-    return $controller->$controllerMethod($this);
+    try {
+      $controller->dispatch($this);
+      return $controller->$controllerMethod($this);
+    } catch(Http404 $e) {
+      $this->handle404();
+      exit;
+    }
   }
 
   public function getData($property) {
@@ -49,7 +57,7 @@ class Middleware {
       }
     }
 
-    header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
+    $this->handle404();
     exit;
   }
 
@@ -60,12 +68,19 @@ class Middleware {
     }
   }
 
-  public function redirectTo($path) {
-    header('Location: index.php?path=' . $path, true);
+  public function redirectTo($path, $args = []) {
+    header('Location: ' . \Lib\url($path, $args));
     exit;
   }
 
   public function redirectToRoot() {
     return $this->redirectTo('/');
+  }
+
+  private function handle404() {
+    $ctrl = new BaseController;
+    echo $ctrl->render('404.php', ['ctrl' => $ctrl]);
+    header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
+    exit;
   }
 }

@@ -8,16 +8,10 @@ use \App\Models\Employee;
 
 class EmployeeService extends BaseService {
   public function getEmployees() {
-    return $this->executeAndMap('SELECT * FROM ' . $this->getDbPrefix() . 'Employee', [], Employee::class);
+    return $this->executeAndMap('SELECT * FROM ' . $this->getDbPrefix() . 'Employee AND shopid = ' . SHOP_ID, [], Employee::class);
   }
 
   public function getEmployee($empnin) {
-    $results = $this->executeAndMap('SELECT * FROM ' . $this->getDbPrefix() . 'Employee WHERE empnin = ?', [$empnin], Employee::class);
-
-    if(is_array($results) && count($results) > 0) {
-      return $results[0];
-    }
-
-    return NULL;
+    return $this->findAndMap('SELECT * FROM ' . $this->getDbPrefix() . 'Employee WHERE empnin = ? AND shopid = ' . SHOP_ID, [$empnin], Employee::class);
   }
 }

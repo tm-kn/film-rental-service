@@ -7,7 +7,7 @@ if(!defined('IN_APP')) {
 use \Lib\Template;
 use \App\Services\EmployeeService;
 
-abstract class BaseController {
+class BaseController {
   private $currentUser = NULL;
 
   protected function getBaseTemplate($content) {
@@ -27,7 +27,7 @@ abstract class BaseController {
     return $baseTemplate->render($context);
   }
 
-  protected function render($file, $args = []) {
+  public function render($file, $args = []) {
     $template = new Template($file);
     $content = $template->render($args);
 

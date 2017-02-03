@@ -30,8 +30,8 @@
        <?php endif; ?>
      </ul>
     </div>
-
   </nav>
+
   <div class="row">
     <div class="large-12 columns">
       <?php if($error): ?>
@@ -39,6 +39,11 @@
           <p><?php echo $error; ?></p>
         </div>
       <?php endif; ?>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="large-12 columns">
       <?php echo $content; ?>
     </div>
   </div>

@@ -9,6 +9,7 @@ define('__ROOT__', dirname(dirname(__FILE__)));
 require_once(__ROOT__ . '/lib/utils.php');
 require_once(__ROOT__ . '/lib/Route.php');
 require_once(__ROOT__ . '/lib/Template.php');
+require_once(__ROOT__ . '/lib/Http404.php');
 
 require_once(__ROOT__ . '/app/Middleware.php');
 require_once(__ROOT__ . '/app/routes.php');
