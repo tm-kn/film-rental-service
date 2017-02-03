@@ -10,8 +10,6 @@
     <div class="top-bar-left">
       <ul class="dropdown menu" data-dropdown-menu>
         <li class="menu-text">Film Rental Service</li>
-        <li><a href="<?php echo \Lib\url('/'); ?>">Home</a></li>
-
         <?php if(!$ctrl->isLoggedIn()): ?>
           <li><a href="<?php echo \Lib\url('/login/'); ?>">Log in</a></li>
         <?php endif; ?>
@@ -41,7 +39,7 @@
       <?php endif; ?>
     </div>
   </div>
-  
+
   <div class="row">
     <div class="large-12 columns">
       <?php echo $content; ?>

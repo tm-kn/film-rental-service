@@ -10,7 +10,7 @@ use \App\Services\EmployeeService;
 class BaseController {
   private $currentUser = NULL;
 
-  protected function getBaseTemplate($content) {
+  protected function getBaseTemplate($request, $content) {
     $baseTemplate = new Template('base.php');
 
     $context = [
@@ -27,11 +27,11 @@ class BaseController {
     return $baseTemplate->render($context);
   }
 
-  public function render($file, $args = []) {
+  public function render($request, $file, $args = []) {
     $template = new Template($file);
     $content = $template->render($args);
 
-    return $this->getBaseTemplate($content);
+    return $this->getBaseTemplate($request, $content);
   }
 
   public function getCurrentUser() {

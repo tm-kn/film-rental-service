@@ -8,6 +8,10 @@ use \App\Services\EmployeeService;
 
 class HomeController extends BaseController {
   public function get($request) {
-    return $this->render('home.php', ['ctrl' => $this]);
+    if($this->isLoggedIn()) {
+      return $request->redirectTo('/loans/');
+    } else {
+      return $request->redirectTo('/login/');
+    }
   }
 }

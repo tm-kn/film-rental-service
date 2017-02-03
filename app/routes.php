@@ -21,9 +21,9 @@ function getRoutes() {
     new Route('/logout/', 'GET', LogoutController::class),
 
     new Route('/loans/', 'GET', LoanController::class),
-    new Route('/loans/new/', 'GET', LoanController::class, 'new'),
+    new Route('/loans/new/', 'GET', LoanController::class, 'newLoan'),
     new Route('/loans/', 'POST', LoanController::class),
-    
+
     new Route('/loans/accept-return/', 'GET', LoanController::class, 'acceptReturnGet'),
     new Route('/loans/accept-return/', 'POST', LoanController::class, 'acceptReturnPost'),
   ];
