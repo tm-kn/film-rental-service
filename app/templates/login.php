@@ -2,5 +2,5 @@
 
 <form action="<?php echo \Lib\url('/login/'); ?>" method="post">
   <input name="empnin" type="text">
-  <input type="submit" value="Submit">
+  <input class="button primary" type="submit" value="Submit">
 </form>
