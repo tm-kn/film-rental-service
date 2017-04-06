@@ -3,6 +3,6 @@
   "dbuser": "homestead",
   "dbpassword": "secret",
   "dbhost": "127.0.0.1",
-  "dbport": "33060",
+  "dbport": "3306",
   "dbcharset": "utf8"
 }
