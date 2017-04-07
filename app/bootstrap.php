@@ -35,6 +35,7 @@ require_once(__ROOT__ . '/app/services/DvdService.php');
 require_once(__ROOT__ . '/app/services/EmployeeService.php');
 require_once(__ROOT__ . '/app/services/LoanService.php');
 require_once(__ROOT__ . '/app/services/PaymentService.php');
+require_once(__ROOT__ . '/app/services/SalesFiguresService.php');
 require_once(__ROOT__ . '/app/services/ShopService.php');
 
 session_start();

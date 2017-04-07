@@ -16,7 +16,7 @@
 
         <?php if($ctrl->isLoggedIn()): ?>
           <li><a href="<?php echo \Lib\url('/loans/'); ?>">Loans</a></li>
-          <li><a href="<?php echo \Lib\url('/sales-figures/'); ?>">Sales Figures</a></li>
+          <li><a href="<?php echo \Lib\url('/sales-figures/'); ?>">Daily Sales Figures</a></li>
           <li><a href="<?php echo \Lib\url('/logout/'); ?>">Log out</a></li>
         <?php endif; ?>
       </ul>

@@ -49,7 +49,9 @@ class LoanService extends BaseService {
       [$dvdId, SHOP_ID]
     );
 
-    return (bool) $query->fetchColumn();
+    $count = $query->fetchColumn();
+
+    return (bool) $count;
   }
 
   public function acceptReturn($loan, $date) {

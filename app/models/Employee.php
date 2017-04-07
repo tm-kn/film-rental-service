@@ -8,6 +8,7 @@ class Employee {
   private $empnin;
   private $empname;
   private $shopid;
+  private $transactionstoday;
 
   public function getNiNumber() {
     return $this->empnin;
@@ -19,5 +20,9 @@ class Employee {
 
   public function getShopId() {
     return $this->shopid;
+  }
+
+  public function getTodayTransactions() {
+    return $this->transactionstoday;
   }
 }
