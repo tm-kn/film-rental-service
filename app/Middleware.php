@@ -79,7 +79,7 @@ class Middleware {
 
   private function handle404() {
     $ctrl = new BaseController;
-    echo $ctrl->render('404.php', ['ctrl' => $ctrl]);
+    echo $ctrl->render($this, '404.php', ['ctrl' => $ctrl]);
     header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
     exit;
   }

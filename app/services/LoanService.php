@@ -25,7 +25,7 @@ class LoanService extends BaseService {
     LEFT JOIN ' . $this->getDbPrefix() . 'RentalStatus rs USING(rstatusid)
     LEFT JOIN ' . $this->getDbPrefix() . 'Customer c USING(custid)
     WHERE r.shopid = ' . SHOP_ID .' AND r.rstatusid IN ('. join(", ", $rstatusid) . ')
-    ORDER BY r.duedate ASC, r.dvdid ASC', [], Loan::class);
+    ORDER BY r.duedate DESC, r.dvdid ASC', [], Loan::class);
   }
 
   public function getLoan($dvdId, $retDateTime) {
@@ -82,9 +82,9 @@ class LoanService extends BaseService {
     
     $query = $this->execute(
       'INSERT INTO ' . $this->getDbPrefix() . 'FilmRental
-        (dvdid, filmid, custid, empnin, rstatusid, shopid, duedate, payid, rentalrate)
+        (dvdid, filmid, custid, empnin, rstatusid, shopid, duedate, payid, rentalrate, overduecharge)
       VALUES
-        (?, ?, ?, ?, 1, ' . SHOP_ID . ', DATE_ADD(NOW(), INTERVAL 7 DAY), ?, ?)',
+        (?, ?, ?, ?, 1, ' . SHOP_ID . ', DATE_ADD(NOW(), INTERVAL 7 DAY), ?, ?, \'0\')',
       [$dvd->getId(), $dvd->getFilmId(), $customer->getId(), $employee->getNiNumber(), $payment->getId(), $payment->getAmount()]
     );
 

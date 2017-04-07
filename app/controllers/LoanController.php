@@ -34,9 +34,13 @@ class LoanController extends BaseController {
       return $this->detail($request);
     }
 
-    $loans = $this->loanService->getLoans();
+    $loans = $this->loanService->getLoans(($request->getData('including_returned') ? true: false));
 
-    return $this->render($request, 'loan-list.php', ['ctrl' => $this, 'loans' => $loans]);
+    return $this->render(
+      $request,
+      'loan-list.php',
+      ['ctrl' => $this, 'loans' => $loans, 'request' => $request]
+    );
   }
 
   public function detail($request) {
@@ -49,7 +53,16 @@ class LoanController extends BaseController {
       throw new Http404();
     }
 
-    return $this->render($request, 'loan-detail.php', ['ctrl' => $this, 'loan' => $loan]);
+    $payments = $this->paymentService->getPaymentsForLoan(
+      $loan->getDvdId(),
+      $loan->getReturnDateTime()
+    );
+
+    return $this->render(
+      $request,
+      'loan-detail.php',
+      ['ctrl' => $this, 'loan' => $loan, 'payments' => $payments]
+    );
   }
 
   public function newLoan($request) {
@@ -429,21 +442,21 @@ class LoanController extends BaseController {
           $errors[] = 'All fields are required';
         }
 
-        if (int($request->getData('expirymonth')) < 1 && int($request->getData('expirymonth')) > 12) {
+        if ((int) $request->getData('expirymonth') < 1 && (int) $request->getData('expirymonth') > 12) {
           $errors[] = 'Expiry month must be 1 - 12.';
         }
 
-        if (int($request->getData('expiryyear')) < date('Y')) {
+        if ((int) $request->getData('expiryyear') < date('Y')) {
           $errors[] = 'Expiry year cannot be in the past.';
         }
 
-        if (int($request->getData('expirymonth')) < 10) {
-          $dcexpr = "0" . int($request->getData('expirymonth'));
+        if ((int) $request->getData('expirymonth') < 10) {
+          $dcexpr = "0" . (int) $request->getData('expirymonth');
         } else {
-          $dcexpr = string(int($request->getData('expirymonth')));
+          $dcexpr = (string) ((int) $request->getData('expirymonth'));
         }
 
-        $dcexpr .= ':' . $request->getData('expiryyear');
+        $dcexpr .= ':' . substr($request->getData('expiryyear'), 2);
         break;
       case 4:
         if (empty($request->getData('ccno'))
@@ -454,21 +467,21 @@ class LoanController extends BaseController {
           $errors[] = 'All fields are required';
         }
 
-        if (int($request->getData('expirymonth')) < 1 && int($request->getData('expirymonth')) > 12) {
+        if ((int) $request->getData('expirymonth') < 1 && (int) $request->getData('expirymonth') > 12) {
           $errors[] = 'Expiry month must be 1 - 12.';
         }
 
-        if (int($request->getData('expiryyear')) < date('Y')) {
+        if ((int) $request->getData('expiryyear') < date('Y')) {
           $errors[] = 'Expiry year cannot be in the past.';
         }
 
-        if (int($request->getData('expirymonth')) < 10) {
-          $ccexpr = "0" . int($request->getData('expirymonth'));
+        if ((int) $request->getData('expirymonth') < 10) {
+          $ccexpr = "0" . (int) $request->getData('expirymonth');
         } else {
-          $ccexpr = string(int($request->getData('expirymonth')));
+          $ccexpr = (string) ((int) $request->getData('expirymonth'));
         }
 
-        $ccexpr .= ':' . $request->getData('expiryyear');
+        $ccexpr .= ':' . substr($request->getData('expiryyear'), 2);
         break;
       default:
         throw new \Exception('Payment type validation for

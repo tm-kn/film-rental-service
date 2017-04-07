@@ -35,3 +35,40 @@
     <?php endif; ?>
   </div>
 </div>
+<div class="row">
+  <div class="large-12 columns">
+    <h2>Associated Transactions</h2>
+    <?php if (count($payments)): ?>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>Employee</th>
+            <th>Customer</th>
+            <th>Status</th>
+            <th>Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php foreach($payments as $payment): ?>
+            <tr>
+              <td><?php echo $payment->getId(); ?></td>
+              <td><?php echo $payment->getAmount(); ?></td>
+              <td><?php echo $payment->getDateTime(); ?></td>
+              <td><?php echo $payment->getEmployeeName(); ?> (<?php echo $payment->getEmployeeNiNumber(); ?>)</td>
+              <td><?php echo $payment->getCustomerName(); ?> (<?php echo $payment->getCustomerId(); ?>)</td>
+              <td><?php echo $payment->getPaymentStatus(); ?></td>
+              <td><?php echo $payment->getPaymentType(); ?></td>
+            </tr>
+          <?php endforeach; ?>
+        </tbody>
+      </table>
+    <?php else: ?>
+      <div class="callout">
+        <p>There is no transactions associated with this loan.</p>
+      </div>
+    <?php endif; ?>
+  </div>
+</div>

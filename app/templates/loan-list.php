@@ -7,6 +7,23 @@
       <div class="small-4 columns">
         <a class="button large primary float-right" href="<?php echo \Lib\url('/loans/new/'); ?>">Loan out a DVD</a>
       </div>
+      <div class="small-4 columns">
+        <?php if ($request->getData('including_returned')): ?>
+          <a
+            class="button secondary float-right"
+            href="<?php echo \Lib\url('/loans'); ?>"
+          >
+            Show only on loan
+          </a>
+        <?php else: ?>
+          <a
+            class="button secondary float-right"
+            href="<?php echo \Lib\url('/loans/', ['including_returned' => 1]); ?>"
+          >
+            Show all (including returned)
+          </a>
+        <?php endif; ?>
+      </div>
     </div>
     <?php if(!count($loans)): ?>
       <div class="callout primary">
