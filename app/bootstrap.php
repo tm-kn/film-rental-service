@@ -19,6 +19,7 @@ require_once(__ROOT__ . '/app/controllers/LoanController.php');
 require_once(__ROOT__ . '/app/controllers/LoginController.php');
 require_once(__ROOT__ . '/app/controllers/LogoutController.php');
 require_once(__ROOT__ . '/app/controllers/HomeController.php');
+require_once(__ROOT__ . '/app/controllers/SalesFiguresController.php');
 
 require_once(__ROOT__ . '/app/models/Customer.php');
 require_once(__ROOT__ . '/app/models/Dvd.php');

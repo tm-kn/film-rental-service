@@ -8,6 +8,7 @@ use \App\Controllers\LoanController;
 use \App\Controllers\LoginController;
 use \App\Controllers\LogoutController;
 use \App\Controllers\HomeController;
+use \App\Controllers\SalesFiguresController;
 use \Lib\Route;
 
 
@@ -30,6 +31,8 @@ function getRoutes() {
 
     new Route('/loans/accept-return/', 'GET', LoanController::class, 'acceptReturnGet'),
     new Route('/loans/accept-return/', 'POST', LoanController::class, 'acceptReturnPost'),
+
+    new Route('/sales-figures/', 'GET', SalesFiguresController::class)
   ];
 
   return $routes;
