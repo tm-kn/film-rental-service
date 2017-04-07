@@ -5,7 +5,7 @@
   <div class="row">
     <div class="large-12 columns">
       <label>National Insurance Number
-        <input name="empnin" type="text" value="">
+        <input name="empnin" type="text" value="<?php echo (isset($_POST['empnin']) ? $_POST['empnin'] : ""); ?>">
       </label>
     </div>
   </div>
@@ -16,5 +16,3 @@
     </div>
   </div>
 </form>
-
-<?php echo (isset($_POST['empnin']) ? $_POST['empnin'] : ""); ?>

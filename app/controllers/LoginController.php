@@ -26,7 +26,7 @@ class LoginController extends BaseController {
       return $request->redirectToRoot();
     } else {
       $_SESSION['flash'] = 'Your credentials are invalid';
-      return $request->redirectTo('/login/');
+      return $this->render($request, 'login.php', ['test' => 'blabla', 'testArray' => [1, 2, 3]]);
     }
 
   }

@@ -24,11 +24,14 @@ require_once(__ROOT__ . '/app/models/Customer.php');
 require_once(__ROOT__ . '/app/models/Dvd.php');
 require_once(__ROOT__ . '/app/models/Employee.php');
 require_once(__ROOT__ . '/app/models/Loan.php');
+require_once(__ROOT__ . '/app/models/Payment.php');
+require_once(__ROOT__ . '/app/models/PaymentType.php');
 
 require_once(__ROOT__ . '/app/services/BaseService.php');
 require_once(__ROOT__ . '/app/services/CustomerService.php');
 require_once(__ROOT__ . '/app/services/DvdService.php');
 require_once(__ROOT__ . '/app/services/EmployeeService.php');
 require_once(__ROOT__ . '/app/services/LoanService.php');
+require_once(__ROOT__ . '/app/services/PaymentService.php');
 
 session_start();
