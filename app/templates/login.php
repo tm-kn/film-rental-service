@@ -1,11 +1,11 @@
 <h1>Log in</h1>
-<p class="lead">Type your NIN number in order to authenticate.</p>
+<p class="lead">Type your NI number in order to authenticate.</p>
 
 <form action="<?php echo \Lib\url('/login/'); ?>" method="post">
   <div class="row">
     <div class="large-12 columns">
       <label>National Insurance Number
-        <input name="empnin" type="text">
+        <input name="empnin" type="text" value="">
       </label>
     </div>
   </div>
@@ -16,3 +16,5 @@
     </div>
   </div>
 </form>
+
+<?php echo (isset($_POST['empnin']) ? $_POST['empnin'] : ""); ?>

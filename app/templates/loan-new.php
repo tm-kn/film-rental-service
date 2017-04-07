@@ -1,5 +1,5 @@
 <h1>Loan out a DVD</h1>
-<p class="lead">Type the DVD's identification number or choose it from the list.</p>
+<p class="lead">Type the DVD's identification number and customer's ID.</p>
 
 <form method="post" action="<?php echo \Lib\url('/loans/'); ?>">
   <div class="row">
