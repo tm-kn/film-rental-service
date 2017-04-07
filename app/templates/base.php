@@ -9,7 +9,7 @@
   <nav class="top-bar">
     <div class="top-bar-left">
       <ul class="dropdown menu" data-dropdown-menu>
-        <li class="menu-text">Film Rental Service</li>
+        <li class="menu-text">Film Rental Service - <?php echo $ctrl->getShop()->getName(); ?></li>
         <?php if(!$ctrl->isLoggedIn()): ?>
           <li><a href="<?php echo \Lib\url('/login/'); ?>">Log in</a></li>
         <?php endif; ?>

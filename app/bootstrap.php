@@ -26,6 +26,7 @@ require_once(__ROOT__ . '/app/models/Employee.php');
 require_once(__ROOT__ . '/app/models/Loan.php');
 require_once(__ROOT__ . '/app/models/Payment.php');
 require_once(__ROOT__ . '/app/models/PaymentType.php');
+require_once(__ROOT__ . '/app/models/Shop.php');
 
 require_once(__ROOT__ . '/app/services/BaseService.php');
 require_once(__ROOT__ . '/app/services/CustomerService.php');
@@ -33,5 +34,6 @@ require_once(__ROOT__ . '/app/services/DvdService.php');
 require_once(__ROOT__ . '/app/services/EmployeeService.php');
 require_once(__ROOT__ . '/app/services/LoanService.php');
 require_once(__ROOT__ . '/app/services/PaymentService.php');
+require_once(__ROOT__ . '/app/services/ShopService.php');
 
 session_start();

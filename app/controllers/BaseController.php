@@ -6,9 +6,11 @@ if(!defined('IN_APP')) {
 
 use \Lib\Template;
 use \App\Services\EmployeeService;
+use \App\Services\ShopService;
 
 class BaseController {
   private $currentUser = NULL;
+  private $currentShop = NULL;
 
   protected function getBaseTemplate($request, $content) {
     $baseTemplate = new Template('base.php');
@@ -42,6 +44,16 @@ class BaseController {
     }
 
     return $this->currentUser;
+  }
+
+  public function getShop() {
+    if(!$this->currentShop) {
+      $shopService = new ShopService;
+
+      $this->currentShop = $shopService->getShop(SHOP_ID);
+    }
+
+    return $this->currentShop;
   }
 
   public function isLoggedIn() {
